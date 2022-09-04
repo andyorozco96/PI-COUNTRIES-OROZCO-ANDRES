@@ -1,10 +1,17 @@
 import './App.css';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom'
+import Home from './components/Home';
+import Cards from './components/Cards';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Countries</h1>
-    </div>
+    <React.Fragment>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/countries' component={Cards}/>
+      </Switch>
+    </React.Fragment>
   );
 }
 

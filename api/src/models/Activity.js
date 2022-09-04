@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   // defino el modelo
 // Validaciones sacadas de https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/ (oficial sequelize)
 
-  sequelize.define('Activities', {
+  sequelize.define('activity', {
     id: {
         type: DataTypes.UUID,
         primaryKey: true,
@@ -17,12 +17,12 @@ module.exports = (sequelize) => {
       validate :{
         isAlpha: {
           args: true,
-          msg: 'El nombre de la actividadsolo puede contener letras'
+          msg: 'El nombre de la actividad solo puede contener letras'
         }
       }
     },
 
-    difficult: {
+    difficulty: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validalte: {

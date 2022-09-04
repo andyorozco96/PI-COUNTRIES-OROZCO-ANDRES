@@ -2,10 +2,9 @@ const { DataTypes } = require('sequelize');
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
 
   // Validaciones sacadas de https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/ (oficial sequelize)
-  sequelize.define('Countries', {
+  sequelize.define('country', {
     id :{
       type: DataTypes.STRING(3),
       allowNull: false,
@@ -16,14 +15,14 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
 
-    image: {
+    flag: {
         type: DataTypes.TEXT,
-        aloowNull: false,
+        allowNull: false,
     },
 
     continent: {
         type: DataTypes.STRING,
-        alowNull: false,
+        allowNull: false,
     },
 
     capital: {
@@ -39,11 +38,9 @@ module.exports = (sequelize) => {
         type: DataTypes.REAL
     },
 
-    poblation: {
+    population: {
       type:DataTypes.REAL
     }
-    
-
   });
 };
 
