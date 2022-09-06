@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {Country, Activity, cache}= require('../db');
-const {Op} = require('sequelize')
+const {Op, INTEGER} = require('sequelize')
 const axios = require('axios');
 const db = require('../db');
 const { get } = require('.');
@@ -45,7 +45,8 @@ const getAllCountriesAPI = async() => {
 
 countriesRouter.get('/', async (req, res, next) => {
     const {name, filter, order, page} = req.query //Me guardo el nombre en caso de haber
-
+    Number(page)
+    console.log(page)
     try {
         if (!cache.countriesDb) {
             await getAllCountriesAPI()
@@ -73,16 +74,16 @@ countriesRouter.get('/', async (req, res, next) => {
     else if (filter){
         try{
             let countries = await Country.findAll(
-                // {
-                //     where:{
-                //         status: filter,
-                //     },
-                //     limit: 9,   // limit y offest pertenecen al paginado de sequelize 
-                //                 //https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
-                //     offset: page,
-                //     order: [["name", order]], // Info sacada de https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#ordering
-                //     include: {model: Activity} // para traer también las actividades de la tabla intermedia.
-                // }
+                {
+                     where:{
+                         continent: filter,
+                     },
+                     limit: 10,   // limit y offest pertenecen al paginado de sequelize 
+                     offset: page,
+                                 //https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
+                     order: [['name', order]], // Info sacada de https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#ordering
+                     include: {model: Activity} // para traer también las actividades de la tabla intermedia.
+                }
             );
             return res.json(countries)
        } catch(error){
@@ -93,9 +94,9 @@ countriesRouter.get('/', async (req, res, next) => {
         try{
             let countries = await Country.findAll(
                 {
-                    limit: 9,
-                    //offset: page,
-                    //order: [['name', DESC]],
+                    offset: page,
+                    limit: 10,
+                    order: [['name', order]],
                     include: {model: Activity}
                 }
             );
