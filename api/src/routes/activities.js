@@ -6,6 +6,16 @@ const {getAllCountriesAPI} = require('./countries')
 const activitiesRouter = Router();
 
 
+activitiesRouter.get ('/', async (req, res, next) =>{
+    try {
+        const activities = await Activity.findAll()
+        res.json(activities)
+    } catch (error){
+        next(error)
+    }
+})
+
+
 activitiesRouter.post('/', async (req,res,next) =>{
 
     const {name, difficulty, duration, season, countriesID} = req.body // countriesID : ["ARG", "COL"]
@@ -13,7 +23,7 @@ activitiesRouter.post('/', async (req,res,next) =>{
         return res.status(501).send({error: 'Todos los campos son obligatorios'})
     }
 
-    else if (!cache.coutriesDb){
+    else if (!cache.countriesDb){
         try {
             await getAllCountriesAPI()
         }catch(error){

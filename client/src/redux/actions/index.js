@@ -1,14 +1,14 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL } from "./actionTypes";
+import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, FILTER_BY_POP, FILTER_BY_NAME } from "./actionTypes";
 import axios from "axios"
 
 
 const URL_CHAR_DB = "http://localhost:3001/countries"
 
 
-export function getCountries(page, order, filter){
+export function getCountries(filter){
    return async function(dispatch){
         try{
-            var {data} = await axios(`${URL_CHAR_DB}/?page=${page}&order=${order}&filter=${filter}`)
+            var {data} = await axios(`${URL_CHAR_DB}/?filter=${filter}`)
             return dispatch({
                 type: GET_ALL_COUNTRIES,
                 payload: data,
@@ -32,3 +32,18 @@ export function getCountryDetail(id){
         }
    }
 }
+
+export function sortByPopulation(payload){
+    return {
+        type: FILTER_BY_POP,
+        payload
+    }
+}
+
+export function sortByName(payload){
+    return {
+        type: FILTER_BY_NAME,
+        payload
+    }
+}
+    

@@ -17,7 +17,7 @@ const getAllCountriesAPI = async() => {
     const dataApi = data.map((e) => { // Me retorna un arreglo con objetos adentro con solo las propiedades que necesito para mi model.
         return {
             id: e.cca3,
-            name: e.name.common,
+            name: e.name.common.normalize('NFD').replace(/[\u0300-\u036f]/g, ""),
             flag: e.flags[0], // Solo me traigo la imagen en svg que es la primera del array
             continent: e.continents[0], // Solo me traigo el primer continente, porque es un array
             capital: e.capital ? e.capital[0] : 'This country does not have a capital', // Corroboro si existe una capital sino mando un msje
@@ -35,16 +35,8 @@ const getAllCountriesAPI = async() => {
     cache.countriesDb = allData
 };
 
-// countriesRouter.get('/', async (req,res,next)=>{
-//     const dataApi = await getAllCountriesAPI()
-//     await Country.bulkCreate(dataApi)
-//     const dataDB = await Country.findAll()
-//     return res.json(dataDB)
-// })
-
-
 countriesRouter.get('/', async (req, res, next) => {
-    const {name, filter, order, page} = req.query //Me guardo el nombre en caso de haber
+    const {name, filter, page} = req.query //Me guardo el nombre en caso de haber
     Number(page)
     console.log(page)
     try {
@@ -55,7 +47,6 @@ countriesRouter.get('/', async (req, res, next) => {
         next(error)
     }
     
-
    if (name){ // En caso de existir un query "name" que filtre los países que coincidan
         try {
             let countries = await Country.findAll({
@@ -77,11 +68,7 @@ countriesRouter.get('/', async (req, res, next) => {
                 {
                      where:{
                          continent: filter,
-                     },
-                     limit: 10,   // limit y offest pertenecen al paginado de sequelize 
-                     offset: page,
-                                 //https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#limits-and-pagination
-                     order: [['name', order]], // Info sacada de https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#ordering
+                     }, 
                      include: {model: Activity} // para traer también las actividades de la tabla intermedia.
                 }
             );
@@ -94,9 +81,6 @@ countriesRouter.get('/', async (req, res, next) => {
         try{
             let countries = await Country.findAll(
                 {
-                    offset: page,
-                    limit: 10,
-                    order: [['name', order]],
                     include: {model: Activity}
                 }
             );
@@ -112,8 +96,10 @@ countriesRouter.get('/:id', async (req, res, next) => {  // Ruta en caso de que 
     let id = req.params.id.toUpperCase() // me traigo el ID y lo paso a mayúsculas para que coincida con los ID de la api que son 3 letras en mayúsculas.
 
     try {
-        let country = await Country.findByPk(id)
+        let country = await Country.findByPk(id, {include:Activity})
+        if (!country) return res.status(404).send({ error: 'The ID is not valid' });
         return res.json(country)
+
     } catch(error){
         next(error)
     }

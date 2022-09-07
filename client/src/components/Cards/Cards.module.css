@@ -1,13 +1,27 @@
-.container {
-    margin: 2rem 3rem 5rem 3rem;
-    border-radius: 20px;
+.container{
     text-align: center;
-    border: 2px solid rgb(0, 0, 0);
+}
+
+a {
+    text-decoration:none;
+    color: black;
+}
+
+.cardsContainer {
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    margin-bottom: 1.5rem;
-    /* min-width: 1220px; */
-    /* min-height: 570px; */
-    padding: 1rem;
-    gap: 2rem;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.filterContainer{
+    display:flex;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.filterContainer div{
+    display:flex;
+    gap: 0.3em;
 }

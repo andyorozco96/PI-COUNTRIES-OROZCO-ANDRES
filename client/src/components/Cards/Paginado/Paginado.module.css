@@ -1,0 +1,24 @@
+.ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style:none;
+    justify-content: center;
+}
+
+.ul li{
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(180, 50, 50, 0.377);
+    width: 40px;
+    height: 30px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.ul li:hover{
+    background-color: rgba(50, 180, 72, 0.377);
+    cursor:pointer;
+
+}
+

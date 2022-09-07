@@ -3,6 +3,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom'
 import Home from './components/Home';
 import Cards from './components/Cards';
+import CardDetail from './components/CardDetail';
 // import Sidebar from './components/Sidebar';
 
 function App() {
@@ -10,11 +11,8 @@ function App() {
     <React.Fragment>
       <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/countries'> 
-          {/*<Sidebar/>*/}
-          <Cards/>
-        </Route>
-        
+        <Route path='/countries/:id'  component={CardDetail}/> 
+        <Route path='/countries'  component={Cards}/> 
       </Switch>
     </React.Fragment>
   );
