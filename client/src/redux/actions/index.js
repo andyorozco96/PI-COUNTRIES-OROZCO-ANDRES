@@ -1,4 +1,12 @@
-import { GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL, FILTER_BY_POP, FILTER_BY_NAME } from "./actionTypes";
+import { 
+    GET_ALL_COUNTRIES, 
+    GET_COUNTRY_DETAIL, 
+    FILTER_BY_POP, 
+    FILTER_BY_NAME,
+    GET_COUNTRY_BY_NAME, 
+    GET_ACTIVITIES} 
+from "./actionTypes";
+
 import axios from "axios"
 
 
@@ -19,6 +27,20 @@ export function getCountries(filter){
    }
 }
 
+export function getCountryByName(name){
+    return async function (dispatch){
+        try{
+            var {data} = await axios(`${URL_CHAR_DB}/?name=${name}`)
+            return dispatch({
+                type: GET_COUNTRY_BY_NAME,
+                payload: data,
+            })
+        } catch(error){
+            console.log(error)
+        }
+    }
+}
+
 export function getCountryDetail(id){
     return async function(dispatch){
         try{
@@ -33,6 +55,7 @@ export function getCountryDetail(id){
    }
 }
 
+
 export function sortByPopulation(payload){
     return {
         type: FILTER_BY_POP,
@@ -44,6 +67,23 @@ export function sortByName(payload){
     return {
         type: FILTER_BY_NAME,
         payload
+    }
+}
+
+export function postActivity(payload){
+        return async function (dispatch){
+            const {data} = await axios.post('http://localhost:3001/activities', payload)
+            return data
+        }
+}
+
+export function getAllActivities(){
+    return async function(dispatch){
+        const {data} = await axios('http://localhost:3001/activities')
+        return dispatch({
+            type: GET_ACTIVITIES,
+            payload: data
+        })
     }
 }
     

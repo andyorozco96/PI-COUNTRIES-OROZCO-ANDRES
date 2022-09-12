@@ -1,0 +1,14 @@
+
+.inputSearch{    
+    width: auto;
+    border-radius: 26px;
+    border: 1px solid #ada9a9;
+    padding: 0.5rem 2%;
+    margin: 1% 1%;
+    background-image: url(https://www.pngarea.com/pngm/109/1164446_searchicon-png-search-icon-png-download.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    outline: 0;
+    background-position: 12px;
+    background-size: 15px;
+}

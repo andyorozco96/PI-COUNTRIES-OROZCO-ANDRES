@@ -96,7 +96,10 @@ countriesRouter.get('/:id', async (req, res, next) => {  // Ruta en caso de que 
     let id = req.params.id.toUpperCase() // me traigo el ID y lo paso a mayúsculas para que coincida con los ID de la api que son 3 letras en mayúsculas.
 
     try {
-        let country = await Country.findByPk(id, {include:Activity})
+        let country = await Country.findByPk(id, {
+            include: {model: Activity}
+        })
+        
         if (!country) return res.status(404).send({ error: 'The ID is not valid' });
         return res.json(country)
 

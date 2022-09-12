@@ -14,7 +14,7 @@ import {getCountries, sortByPopulation, sortByName} from '../../redux/actions/in
 import {Link} from 'react-router-dom'
 import Card from '../Card'
 import Paginado from './Paginado/Paginado'
-
+import SearchBar from '../SearchBar';
 
 import style from './Cards.module.css'
 
@@ -84,7 +84,7 @@ function Cards() {
 
   return (
     <div className={style.container}>
-      <Link to='/'>Create new activity</Link> 
+      <Link to='/activities'><button>Create new activity</button></Link> 
       <h1>Countries</h1>
       <button onClick = {e => {handleClickReload(e)}}>Refresh countries</button>
       <div className={style.filterContainer}>
@@ -127,6 +127,8 @@ function Cards() {
 
       <Paginado countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}>
       </Paginado>
+
+      <SearchBar/>
 
       <div className={style.cardsContainer}>
       {

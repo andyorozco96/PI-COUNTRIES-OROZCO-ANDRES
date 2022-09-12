@@ -8,10 +8,13 @@ a {
 }
 
 .cardsContainer {
+    margin: 2rem 5rem 2rem 5rem;
+    border: 0.2rem black solid;
+    border-radius: 2rem;
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    padding: 2rem;
+    padding: 4rem 2rem 4rem 2rem;
     gap: 1rem;
 }
 

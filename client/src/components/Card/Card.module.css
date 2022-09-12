@@ -8,4 +8,5 @@ img {
 
 img:hover{
     transform: scale(1.2);
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.411);
 }

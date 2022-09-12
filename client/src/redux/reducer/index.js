@@ -1,4 +1,12 @@
-import { FILTER_BY_NAME, FILTER_BY_POP, GET_ALL_COUNTRIES, GET_COUNTRY_DETAIL } from "../actions/actionTypes"
+import { 
+    FILTER_BY_NAME, 
+    FILTER_BY_POP, 
+    GET_ACTIVITIES, 
+    GET_ALL_COUNTRIES, 
+    GET_COUNTRY_BY_NAME, 
+    GET_COUNTRY_DETAIL,
+    POST_ACTIVITY } 
+    from "../actions/actionTypes"
 
 const initialState = {
     countries : [],
@@ -20,6 +28,13 @@ export default function rootReducer(state = initialState, {type, payload}){
                 ...state, 
                 detail: payload
             }
+
+        case GET_COUNTRY_BY_NAME:
+            return {
+                ...state,
+                countries: payload,
+            }
+            
         case FILTER_BY_POP:
             let sortedByPop = payload === 'ASC' ?
                 state.countries.sort(function (a,b){
@@ -52,6 +67,18 @@ export default function rootReducer(state = initialState, {type, payload}){
                 ...state,
                 countries: sortedByName
             }
+
+        case POST_ACTIVITY:
+            return {
+                ...state
+
+            }
+        case GET_ACTIVITIES:
+            return {
+                ...state,
+                activities: payload
+            }
+
         default : 
             return initialState
     }
