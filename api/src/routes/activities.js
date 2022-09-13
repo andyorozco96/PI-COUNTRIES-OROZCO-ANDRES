@@ -17,18 +17,18 @@ activitiesRouter.get ('/', async (req, res, next) =>{
 
 
 activitiesRouter.post('/', async (req,res,next) =>{
+    try {
+        if (!cache.countriesDb) {
+            await getAllCountriesAPI()
+        }
+    }catch(error){
+        next(error)
+    }
+
 
     const {name, difficulty, duration, season, countriesID} = req.body // countriesID : ["ARG", "COL"]
     if (!name || !difficulty || !duration || !season || !countriesID){ // countriesID va a ser un arreglo con los ID de cada país
         return res.status(501).send({error: 'Todos los campos son obligatorios'})
-    }
-
-    else if (!cache.countriesDb){
-        try {
-            await getAllCountriesAPI()
-        }catch(error){
-            next(error)
-        }
     }
 
     try{

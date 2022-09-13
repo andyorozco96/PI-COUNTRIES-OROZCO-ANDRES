@@ -13,6 +13,11 @@
     gap: 1rem;
 }
 
+.buttonContainer{
+    display: inline-flex;
+    justify-content: center;
+    gap: 1rem
+}
 .container button{
     display: inline-flex;
     align-items:center;
@@ -22,7 +27,6 @@
     border-radius: 0.3rem;
     font-size: 1em;
     padding: 1rem;
-    width: 15%;
     height: 25px;
 }
 
@@ -31,3 +35,4 @@ button:hover{
     transform: scale(1.1);
     /* transition: transform 0.2s; */
 }
+

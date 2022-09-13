@@ -39,8 +39,8 @@ function CardDetail(props) {
                            (
                                 <div>
                                     <h4>{activity.name}</h4>
-                                    <div>Duration: {activity.duration} hs</div>
-                                    <div>Season: {activity.season} hs</div>
+                                    <div>Duration: {activity.duration} hs approximately</div>
+                                    <div>Season: {activity.season}</div>
                                     <div>Difficulty: {activity.difficulty}</div>
                                 </div>
                             )
@@ -48,9 +48,15 @@ function CardDetail(props) {
                     }
                     </div>
                 </div>
-                <Link to='/countries'>
-                    <button>Back</button>
-                </Link>
+                <div className={style.buttonContainer}>
+                    <Link to='/countries'>
+                            <button>Return</button>
+                        </Link>
+                        <Link to='/activities'>
+                            <button>Create new activity</button>
+                        </Link>
+                </div>
+
             </div>
           )
     } else return (

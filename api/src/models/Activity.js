@@ -15,10 +15,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate :{
-        isAlpha: {
-          args: true,
-          msg: 'El nombre de la actividad solo puede contener letras'
-        }
+        is: /^[\w\-\s]+$/
       }
     },
 
