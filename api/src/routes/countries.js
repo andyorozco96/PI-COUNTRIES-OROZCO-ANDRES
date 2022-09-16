@@ -108,5 +108,23 @@ countriesRouter.get('/:id', async (req, res, next) => {  // Ruta en caso de que 
     }
 })
 
+
+/* DELETE DE PRUBA */
+
+countriesRouter.post('/:id', async (req, res,next)=>{
+    const id = req.params.id.toUpperCase()
+
+    try{
+        let country = await Country.findByPk(id)
+        .then(await country.destroy())
+
+        if (!country) return res.status(404).send({ error: 'The ID is not valid' });
+        return res.json(country)
+
+    } catch(error){
+        next(error)
+    }
+})
+
 module.exports = {countriesRouter, getAllCountriesAPI}
 

@@ -50,5 +50,4 @@ activitiesRouter.post('/', async (req,res,next) =>{
 
 
 
-
 module.exports = {activitiesRouter};

@@ -74,6 +74,7 @@ function Cards() {
   const handleFilter = (e) =>{
     e.preventDefault();
     setFilter(e.target.value)
+    setPages(1)
   }
 
   // ORDENAR POR POBLACIÓN //
