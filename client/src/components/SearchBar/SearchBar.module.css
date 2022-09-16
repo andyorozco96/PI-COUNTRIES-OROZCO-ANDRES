@@ -1,5 +1,6 @@
 
-.inputSearch{    
+.inputSearch{
+    display: flex;    
     width: auto;
     border-radius: 26px;
     border: 1px solid #ada9a9;
@@ -11,4 +12,5 @@
     outline: 0;
     background-position: 12px;
     background-size: 15px;
+    font-size: 1em;
 }

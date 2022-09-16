@@ -1,0 +1,60 @@
+.divContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('./src/background-edited.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+    margin:0 auto;
+    padding:0;
+}
+
+.divText {
+    max-width: 30rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: #733b36ec;
+    border-radius: 25px;
+    transition: transform 0.2s
+}
+
+.divText:hover {
+    transform: scale(1.2)
+}
+
+
+.divText p {
+    font-size: 1.3em;
+    text-align: center;
+    color:white;
+}
+
+.divText span {
+    font-weight: 700;
+}
+
+.divBtn {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+}
+
+.divBtn button{
+    padding: 0.7em 2em;
+    background: none;
+    border-radius: 10px;
+    border-width: 1px;
+    align-self: center;
+    border: 3px #6393A6 solid;
+    color:white;
+    font-weight: 600;
+    font-size: 1.2em
+}
+.divBtn button:hover{
+    border: 3px #ffffff solid;
+    color:white;
+    background-color: #6393A6;
+
+}

@@ -83,65 +83,103 @@ function Cards() {
   }
 
   return (
-    <div className={style.container}>
-      <Link to='/activities'><button>Create new activity</button></Link> 
-      <h1>Countries</h1>
-      <button onClick = {e => {handleClickReload(e)}}>Refresh countries</button>
-      <div className={style.filterContainer}>
-        <div>
-          <label value='Continent'>
-            Order by continent
-          </label>
-          <select onChange={e => handleFilter(e)}>
-              <option value=''>All</option>
-              <option value="Africa">Africa</option>
-              <option value="Antarctica">Antarctica</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="South America">South America</option>
-              <option value="North America">North America</option>
-              <option value="Oceania">Oceania</option>
-          </select>
+    <React.Fragment>
+      <nav className={style.navMain}>
+        <a className={style.logo} href="/">
+          <img src="https://logodix.com/logo/1931272.png" alt="logo home" />
+        </a>
+        <div className={style.navBtnContainer}>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/activities">Create activity</a></li>
+            <li><a href="/countries">About me</a></li>
+          </ul>
         </div>
+      </nav>
+      
+      <div className={style.homeContainer}>
 
-        <div>
-          <label value='Name'>
-            Order by name
-          </label>
-          <select onChange={e => handleOrder(e)}>
-              <option value="ASC">From A to Z</option> {/* equivale a DESC */}
-              <option value="DESC">From Z to A</option> {/* equivale a ASC*/}
-          </select>
-        </div>
+        <div className={style.asideContainer}>
+          <p>Filters</p>
+          <div className={style.asideBtnClearContainer}>
+            <button className={style.asideBtnClear}onClick = {e => {handleClickReload(e)}}>Clear filters</button>
+          </div>
 
-        <div>
-          <label value='Population'>
-            Population
-          </label>
-          <select onChange={e => handlePop(e)}> 
-              <option value="ASC">Ascendent</option>
-              <option value="DESC">Descendent</option>
-          </select>
-        </div>
-      </div>
-
-      <Paginado countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}>
-      </Paginado>
-
-      <SearchBar/>
-
-      <div className={style.cardsContainer}>
-      {
-        currentCountries && currentCountries.map((e)=>{
-          return (
+          <div className={style.asideSearchContainer}>
             <div>
-                <Card id={e.id} image={e.flag} name={e.name} continent={e.continent} key={e.id}></Card>
+              <label for="byName">Search by name</label>
             </div>
-          )
-        })
-      }
+            <div className={style.asideInputSearch}>
+              <SearchBar/>
+            </div>
+          </div>
+
+
+          <div className={style.asideFieldContainer}>
+              <label value='Continent'>
+                Order by continent
+              </label>
+              <select onChange={e => handleFilter(e)}>
+                  <option value=''>All</option>
+                  <option value="Africa">Africa</option>
+                  <option value="Antarctica">Antarctica</option>
+                  <option value="Asia">Asia</option>
+                  <option value="Europe">Europe</option>
+                  <option value="South America">South America</option>
+                  <option value="North America">North America</option>
+                  <option value="Oceania">Oceania</option>
+              </select>
+          </div>
+
+          <div className={style.asideFieldContainer}>
+              <label value='Name'>
+                Order by name
+              </label>
+
+              <select onChange={e => handleOrder(e)}>
+                  <option value="ASC">From A to Z</option> {/* equivale a DESC */}
+                  <option value="DESC">From Z to A</option> {/* equivale a ASC*/}
+              </select>
+          </div>
+
+          <div className={style.asideFieldContainer}>
+              <label value='Population'>
+                Population
+              </label>
+
+              <select onChange={e => handlePop(e)}> 
+                  <option value="ASC">Ascendent</option>
+                  <option value="DESC">Descendent</option>
+              </select>
+          </div>
+        </div>
+
+
+
+        <div className={style.allCardsContainer}>
+          <div className={style.titleContainer}><h1>Countries</h1></div>
+            
+          <div className={style.cardsContainer}>
+
+              {
+                currentCountries && currentCountries.map((e)=>{
+                  return (
+                    <div className={style.card}>
+                        <Card id={e.id} image={e.flag} name={e.name} continent={e.continent} key={e.id}></Card>
+                    </div>
+                  )
+                })
+              }
+          </div>
+
+          <div className={style.allPagesContainer}>
+            <Paginado countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}>
+            </Paginado>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 

@@ -1,47 +1,222 @@
-/*Inputs en general*/
-input{
-    border-radius: 0.5rem;
-    margin: 0em 0.5em 0 0.5em;
+/* CSS DEL NAVBAR podría haberlo hecho en un componente aparte */ 
+
+.navMain{
+    background-color: antiquewhite;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+}
+.navMain a {
+    cursor: pointer;
+}
+.navMain a:hover {
+    cursor: pointer;
     box-shadow: none;
-    border-style: solid;
-    border-width: 1px;
-    padding: 0.1em 0.5em 0.1em 0.5em
+}
+.navMain a img{
+    height: 40px;
+    width: auto;
+    padding: 0.5rem 1rem;
+}
+.navMain a img:hover{
+    box-shadow: none;
+}
+.navBtnContainer{
+    display: flex;
+    gap: 1rem
+}
+.navBtnContainer ul{
+    display: flex;
+    justify-content:space-around;
+    list-style-type:none;
+    gap: 1rem;
+    padding: 0.3rem 1rem;
+}
+.navBtnContainer ul li{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6393a6da;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    
 
-}   
-
-input:focus-visible{
-    outline: 2px solid rgba(173, 216, 230, 0.315);
-    outline-offset: 1px;
+}
+.navBtnContainer ul li:hover{
+    background-color: #297a9bda;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.navBtnContainer ul li a{
+    text-decoration: none;
+    color: white;
 }
 
-body{
-    margin: 1rem
+.formGridContainer{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0rem 10rem 0rem 10rem;
+    background-image: url("../Cards/src/Background3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    gap: 5rem;
+    padding: 3rem;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.activityContainer {
+    grid-column: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.activityInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50rem;
+    margin-bottom: 5rem;
+        border-radius: 20px;
+        border: 2px solid #fff;
+    }
+
+    .activityTitleContainer{
+        width: 100%;
+        display: block;
+    }
+        .activityTitleContainer h3{
+            font-size: 2rem;
+            margin: 0;
+            padding: 1rem;
+            text-align: center;
+            background-color: antiquewhite;
+            color: rgb(36, 36, 36);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .formFieldContainer{
+            display: flex;
+            flex-direction: column;
+            margin-top: 1.5rem;
+    }
+    .formFieldContainer select {
+        width: 100%;
+        padding: 0.5em;
+            font-size: 1em;
+        }
+
+        .formFieldContainer label {
+            font-size: 1em;
+            margin: 0;
+        }
+        
+        .formFieldContainer input {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.48rem 0.8rem;
+            border-radius: 0px;
+            border: 2px solid transparent;
+            outline: none;
+            box-shadow: none;
+            width: 100%;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .formFieldContainer input:focus-visible{
+            outline: 3px solid antiquewhite;
+            outline-offset: 4px;
+        }
+
+
+        .formFieldContainer div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 1.5rem;
+        }
+        
+
+.activityPreviewContainer{
+    grid-column: 2/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/*Inputs cuando tienen algun error*/
-
-.error:focus-visible{
-   border: 1px solid rgba(255, 0, 0, 0.5);
-
-}
-
-/* Asterisco de obligatorio */
-.mandatory {
-    color: red;
-    font-weight: 600;
-    font-size: 1.2rem;
+.activityPreviewInfo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50rem;
+    margin-bottom: 5rem;
+    border-radius: 20px;
+    border: 2px solid #fff;
 }
 
 
+.formBtnContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+}
 
-/*Inputs cuando no tienen errores*/
+    .formBtn{
+        align-self: center;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1em;
+        padding: 0.5rem;
+        cursor: pointer;
+        margin-bottom: 3rem;
+    }
 
-.correct:focus-visible{
-    border: 1px solid rgba(0, 165, 55, 0.507);
- }
+    .formBtn:hover{
+        background-color: #6393A6;
+        color: white;
+        transform: none;
+    }
+
+        .formBtn a{
+            text-decoration: none;
+            color: rgb(36, 36, 36)
+        }
 
 
-.checked{
+        /*Inputs cuando tienen algun error*/
+        
+        .error:focus-visible{
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            
+        }
+        
+        /* Asterisco de obligatorio */
+        .mandatory {
+            color: red;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+
+
+        /*Inputs cuando no tienen errores*/
+
+        .correct:focus-visible{
+            border: 2px solid rgba(0, 165, 55, 0.507);
+        }
+        
+
+        .checked{
     color:  rgb(0, 165, 55);
     font-weight: 600;
  }

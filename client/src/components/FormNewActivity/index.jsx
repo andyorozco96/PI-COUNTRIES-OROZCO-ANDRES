@@ -37,7 +37,7 @@ function FormActivity() {
   const [input, setInput] = useState({
     name: '',
     difficulty: 0,
-    duration: 0,
+    duration: 1,
     season: '',
     countriesID: [],
   })
@@ -106,7 +106,7 @@ function FormActivity() {
     setInput({
       name: '',
       difficulty: 0,
-      duration: 0,
+      duration: 1,
       season: '',
       countriesID: [],
     })
@@ -134,101 +134,152 @@ function FormActivity() {
   const infoCountries = infoCountry(infoFromState, countries)
 
   return (
-    <div>
-      <Link to='/countries'><button>Go back</button></Link>
-      <h1>Create a country-specific activity!</h1>
-        
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <span className={errors.name ? style.mandatory : ''}>*</span><label>Activity name:</label>
-          <input className={errors.name || !input.name ? style.error : style.correct} type="text" value={input.name} name='name' onChange={e => handleChange(e)}/>
+    <React.Fragment>
+      
+      <nav className={style.navMain}>
+        <a className={style.logo} href="/">
+          <img src="https://logodix.com/logo/1931272.png" alt="logo home" />
+        </a>
+        <div className={style.navBtnContainer}>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/activities">Create activity</a></li>
+            <li><a href="/countries">About me</a></li>
+          </ul>
         </div>
-        
-        <div>
-          <label>Set difficulty level:</label>
-          <input type="range" value={input.difficulty} name='difficulty' min='0' max='5' step='1' onChange={e => handleChange(e)}/>
-        </div>
-        
-        <div>
-          <label>Set duration (hours):</label>
-          <input 
-            className={errors.duration ? style.error : ''}
-            type="number" 
-            value={input.duration} 
-            name='duration' min='0' 
-            max='24' 
-            onChange={e => handleChange(e)}/>
-        </div>
+      </nav>
+      <section className={style.formGridContainer}>
 
-        <div>
-        <span className={errors.season ? style.mandatory : ''}>*</span><label>Season: </label>
-            <label className={input.season === 'Summer' ? style.checked : ''}>Summer</label>
-            <input
-              className={style.checkbox}
-              disabled={input.season !== 'Summer' && input.season !== '' ? true : false}   
-              type="checkbox" 
-              value="Summer" 
-              name='Summer' 
-              onChange={e => handleCheck(e)}/> 
-
-            <label className={input.season === 'Autumn' ? style.checked : ''}>Autumn</label>
-            <input 
-              className={style.checkbox}
-              disabled={input.season !== 'Autumn' && input.season !== '' ? true : false}  
-              type="checkbox" 
-              value="Autumn" 
-              name='Autumn' 
-              onChange={e => handleCheck(e)}/>
-
-            <label className={input.season === 'Winter' ? style.checked : ''}>Winter</label> 
-            <input
-              className={style.checkbox}
-              disabled={input.season !== 'Winter' && input.season !== '' ? true : false}  
-              type="checkbox" 
-              value="Winter" 
-              name='Winter' 
-              onChange={e => handleCheck(e)}/>
-
-            <label className={input.season === 'Spring' ? style.checked : ''}>Spring</label>
-            <input
-                className={style.checkbox}
-                disabled={input.season !== 'Spring' && input.season !== '' ? true : false} 
-                type="checkbox" 
-                value="Spring" 
-                name='Spring' 
-                onChange={e => handleCheck(e)}/>
-        </div>
-        
-        <div>
-          <span className={errors.countriesID ? style.mandatory : ''}>*</span><label>Choose countries:</label>
-          <select onChange={e => handleSelect(e)}>
-            {
-            sortedCountries.map((country) => {
-              return (
-              <option value={country.name}>{country.name}</option>)})
-            }
-          </select>
-        </div>
-        <div className={style.divContainer}>
-          { 
-              infoCountries.map((el) => {
-                return (
-                  <div className={style.divSmallCard}>
-                    <i
-                      onClick={()=>handleDeleteCountry(el)}
-                      class="fa-solid fa-xmark" className={style.closeIcon}></i>
-                      <img className={style.imageSmall} src={el.flag} alt={`Flag of${el.name}`} />
-                  </div>
-                )
-              })
-            }
+        <div className={style.activityContainer}>
+          <div className={style.activityInfo}>
+          <div className={style.activityTitleContainer}>
+            <h3>Create a country-specific activity!</h3>
           </div>
-          <div>
-            <button type='submit' disabled={errorsCount}>¡Create!</button>
+
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className={style.formFieldContainer}>
+                <label>
+                <span className={errors.name ? style.mandatory : ''}>*</span>
+                  Activity name:</label>
+                <input 
+                  className={errors.name || !input.name ? style.error : style.correct} 
+                  type="text" value={input.name} 
+                  name='name'
+                  placeholder='Write a name for your activity' 
+                  onChange={e => handleChange(e)}/>
+
+              <div className={errors.name ? style.mandatory : errors.correct}>
+                {input.name}
+              </div>
+            </div>
+            
+            <div className={style.formFieldContainer}>
+                <label>Set difficulty level:</label>
+                <input type="range" value={input.difficulty} name='difficulty' min='1' max='5' step='1' onChange={e => handleChange(e)}/>
+            </div>
+            
+            <div className={style.formFieldContainer}>
+              <label>Set duration (hours):</label>
+              <input 
+                className={errors.duration ? style.error : ''}
+                type="number" 
+                value={input.duration} 
+                name='duration' 
+                min='1' 
+                max='24' 
+                onChange={e => handleChange(e)}/>
+            </div>
+    
+            <div className={style.formFieldContainer}>
+              <div>
+                <span className={errors.season ? style.mandatory : ''}>*</span><label>Select a season: </label>
+              </div>
+              <div>
+                <div>
+                  <label className={input.season === 'Summer' ? style.checked : ''}>Summer</label>
+                  <input
+                    className={style.checkbox}
+                    disabled={input.season !== 'Summer' && input.season !== '' ? true : false}   
+                    type="checkbox" 
+                    value="Summer" 
+                    name='Summer' 
+                    onChange={e => handleCheck(e)}/> 
+                </div>
+
+                <div>
+                  <label className={input.season === 'Autumn' ? style.checked : ''}>Autumn</label>
+                  <input 
+                    className={style.checkbox}
+                    disabled={input.season !== 'Autumn' && input.season !== '' ? true : false}  
+                    type="checkbox" 
+                    value="Autumn" 
+                    name='Autumn' 
+                    onChange={e => handleCheck(e)}/>
+                </div>
+                
+                <div>
+                  <label className={input.season === 'Winter' ? style.checked : ''}>Winter</label> 
+                  <input
+                    className={style.checkbox}
+                    disabled={input.season !== 'Winter' && input.season !== '' ? true : false}  
+                    type="checkbox" 
+                    value="Winter" 
+                    name='Winter' 
+                    onChange={e => handleCheck(e)}/>
+                </div>
+
+                <div>
+                  <label className={input.season === 'Spring' ? style.checked : ''}>Spring</label>
+                  <input
+                      className={style.checkbox}
+                      disabled={input.season !== 'Spring' && input.season !== '' ? true : false} 
+                      type="checkbox" 
+                      value="Spring" 
+                      name='Spring' 
+                      onChange={e => handleCheck(e)}/>
+                </div>
+              </div>
+            </div>
+            
+            <div className={style.formFieldContainer}>
+              <label>
+                <span className={errors.countriesID ? style.mandatory : ''}>*</span>
+                Choose countries:
+                </label>
+              <select onChange={e => handleSelect(e)}>
+                {
+                sortedCountries.map((country) => {
+                  return (
+                  <option value={country.name}>{country.name}</option>)})
+                }
+              </select>
+            </div>
+            <div className={style.divContainer}>
+              { 
+                  infoCountries.map((el) => {
+                    return (
+                      <div className={style.divSmallCard}>
+                        <i
+                          onClick={()=>handleDeleteCountry(el)}
+                          class="fa-solid fa-xmark" className={style.closeIcon}></i>
+                          <img className={style.imageSmall} src={el.flag} alt={`Flag of${el.name}`} />
+                      </div>
+                    )
+                  })
+                }
+              </div>
+
+              <div className={style.formBtnContainer}>
+                <button className={style.formBtn}><a href='/countries'>Go back</a></button>
+                <button className={style.formBtn} type='submit' disabled={errorsCount}>¡Create!</button>
+              
+              </div>
+          </form>
           </div>
-      </form>
-    </div>
-  )
+        </div>
+      </section>
+    </React.Fragment>
+    )
 }
 
 export default FormActivity

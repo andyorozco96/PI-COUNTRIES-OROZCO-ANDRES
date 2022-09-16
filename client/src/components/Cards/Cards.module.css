@@ -1,30 +1,234 @@
-.container{
-    text-align: center;
+
+/* CSS DEL NAVBAR podría haberlo hecho en un componente aparte */ 
+
+.navMain{
+    background-color: antiquewhite;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+}
+.navMain a {
+    cursor: pointer;
+}
+.navMain a:hover {
+    cursor: pointer;
+    box-shadow: none;
+}
+.navMain a img{
+    height: 40px;
+    width: auto;
+    padding: 0.5rem 1rem;
+}
+.navMain a img:hover{
+    box-shadow: none;
+}
+.navBtnContainer{
+    display: flex;
+    gap: 1rem
+}
+.navBtnContainer ul{
+    display: flex;
+    justify-content:space-around;
+    list-style-type:none;
+    gap: 1rem;
+    padding: 0.3rem 1rem;
+}
+.navBtnContainer ul li{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6393a6da;
+    border-radius: 10px;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    
+
+}
+.navBtnContainer ul li:hover{
+    background-color: #297a9bda;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.navBtnContainer ul li a{
+    text-decoration: none;
+    color: white;
 }
 
-a {
-    text-decoration:none;
-    color: black;
-}
+/*      HOME CSS    */
 
-.cardsContainer {
-    margin: 2rem 5rem 2rem 5rem;
-    border: 0.2rem black solid;
-    border-radius: 2rem;
-    text-align: center;
+.homeContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    padding: 4rem 2rem 4rem 2rem;
+    grid-template-columns: .2fr 1fr;
+    background-image: url( './src/Background3.jpg');
+    background-repeat: no repeat;
+    background-position: center;
+    background-size:cover;
+}
+
+
+/*      CSS DEL ASIDE        */
+.asideContainer{
+    background-color: #733B36;
+    padding: 1rem;
+    width: 230px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.asideBtnClearContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+    .asideBtnClear{
+        align-self: center;
+        border-radius: 10px;
+        border: none;
+        width: 100%;
+        font-size: 1em;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    .asideBtnClear:hover{
+        background-color: #6393A6;
+        color: white;
+        transform: none;
+    }
+
+.asideSearchContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-gap: 1rem;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+    .asideInputSearch{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        .asideInputSearch form{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+            .asideInputSearch input{
+                padding: 0.48rem 0.8rem;
+                border-radius: 0px;
+                border: 2px solid transparent;
+                outline: none;
+                box-shadow: none;
+                width: 100%;
+            }
+            .asideInputSearch a{
+                border-radius: 0p0px;
+                position: absolute;
+                top: 1px;
+                right: 0px;
+                background-color: #6393A6 ;
+                padding: 0.50rem;
+                transition: background-color .5s;
+            }
+            .asideInputSearch i{
+                color: white;
+                font-weight: 800;
+            }
+.asideFieldContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    grid-gap: 1rem;
     gap: 1rem;
 }
+.asideFieldContainer select {
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+}
 
-.filterContainer{
-    display:flex;
+
+
+/*      CSS DEL CONTENEDOR DE TODAS LAS CARDS        */
+
+.allCardsContainer{
+    margin: 5rem 7rem 8rem 3rem;
+    border-radius: 20px;
+    text-align: center;
+    border: none
+}
+
+.titleContainer{
+    background: antiquewhite;
+    margin-bottom: 1.5rem;
+}
+
+    .titleContainer h1{
+        margin: 0;
+        padding: 1rem;
+        font-size: 2em;
+        color: rgb(36, 36, 36);
+    }
+
+.cardsContainer{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 1.5rem;
     justify-content: center;
-    gap: 1.5em;
+    align-items: center;
 }
 
-.filterContainer div{
-    display:flex;
-    gap: 0.3em;
+@media screen and (max-width: 1290px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
+
+@media screen and (max-width: 1180px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .errorContainer h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .cardsContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .cardsContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.allPagesContainer{
+    background: antiquewhite;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 1rem;
+}
+    .allPagesContainer ul{
+        margin: 0;
+        gap: 1.5rem;
+    }
+
+    .allPagesContainer ul li{
+        color: rgb(36, 36, 36);
+    }
